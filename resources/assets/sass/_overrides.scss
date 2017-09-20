@@ -1,0 +1,55 @@
+.card {
+  border: 0;
+  box-shadow: 0 0.5em 0.5em 0 rgba(0, 0, 0, 0.05);
+  
+  &-footer {
+    background: #eaeaff;
+    border: 0;
+  }
+}
+
+a,
+.btn {
+  cursor: pointer;
+}
+
+.btn {
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 0.657125rem 1rem;
+  text-transform: uppercase;
+}
+
+.btn:not(.btn-link) {
+  box-shadow: 0 0.1em 0.25em 0 rgba(0, 0, 0, 0.25);
+
+  &:hover {
+    box-shadow: 0 0.05em 0.15em 0 rgba(0, 0, 0, 0.35);
+  }
+}
+
+.table thead th {
+  vertical-align: top;
+}
+
+.table-responsive.card {
+  margin-bottom: 1rem;
+
+  .table {
+    margin-bottom: 0;
+  }
+}
+
+.page-link {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.dropdown-menu {
+  border: 0;
+  box-shadow: 0 0.25em 0.5em 0 rgba(0, 0, 0, 0.2);
+  margin-bottom: 1em;
+  margin-top: 0.5em;
+}
