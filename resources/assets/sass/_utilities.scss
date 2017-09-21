@@ -6,6 +6,18 @@
   min-width: 80px;
 }
 
+.h-100vh {
+  height: 100vh;
+}
+
+.ovx-auto {
+  overflow-x: auto;
+}
+
+.ovy-auto {
+  overflow-y: auto;
+}
+
 .loading-icon {
   animation: fading-pulse 1s linear normal infinite;
 }

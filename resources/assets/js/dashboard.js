@@ -3,11 +3,11 @@
 import 'sass/app'
 
 import Vue from 'vue'
-import Axios from 'axios'
+import axios from 'js/axios-instance'
 import router from 'js/router'
 import Dashboard from 'vue/Dashboard'
 
-Vue.prototype.http = Axios
+Vue.prototype.http = axios
 
 new Vue({
   router,

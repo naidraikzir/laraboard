@@ -21,7 +21,10 @@ export default {
 
   methods: {
     logout () {
-      
+      this.http.post('/logout')
+        .then(() => {
+          window.location.href = '/'
+        })
     }
   }
 }

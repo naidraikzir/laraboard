@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index');
-Route::get('/dashboard/{page}', 'NotFoundController@index');
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'dashboard'
+], function () {
+    Route::get('/', 'DashboardController@index');
+    Route::get('/{page}', 'NotFoundController@index');
+});
