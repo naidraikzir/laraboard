@@ -5,7 +5,7 @@
     "dev": "webpack-dev-server --hot",
     "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --hide-modules",
     "mix": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "postinstall": "npm run build",
+    "postinstall": "npm run build && npm run mix",
     "stats": "cross-env NODE_ENV=production STATS=yes webpack --progress --hide-modules"
   },
   "dependencies": {

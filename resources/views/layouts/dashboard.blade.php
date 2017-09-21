@@ -7,7 +7,7 @@
         <meta name="csrf_token" content="{{ csrf_token() }}">
         <title>Laraboard</title>
         @if (env('APP_ENV') !== 'local')
-            <link rel="stylesheet" href="/css/app.css">
+            <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         @endif
     </head>
 
@@ -17,8 +17,8 @@
             <script src="http://localhost:8080/js/vendor.js"></script>
             <script src="http://localhost:8080/js/dashboard.js"></script>
         @else
-            <script src="/js/vendor.js"></script>
-            <script src="/js/dashboard.js"></script>
+            <script src="{{ mix('js/vendor.js') }}"></script>
+            <script src="{{ mix('js/dashboard.js') }}"></script>
         @endif
     </body>
 </html>
