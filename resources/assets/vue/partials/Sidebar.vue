@@ -2,8 +2,10 @@
 .sidebar.bg-dark-blue
   ul
     li(v-for="(menu, key) of menus" :key="key")
-      router-link(:to="{ path: menu.path }" :exact="menu.exact")
+      router-link(:to="{ path: menu.path }" :exact="menu.exact" v-if="!menu.title")
         div(@click="$emit('close-menu')") {{ menu.text }}
+      div(v-else)
+        span.title {{ menu.text }}
 </template>
 
 <script>
@@ -47,6 +49,16 @@ ul {
     color: rgba(255, 255, 255, 0.5);
   }
 
+  .title {
+    color: rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    font-size: 0.7em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 100%;
+  }
+
   a {
     color: white;
     text-decoration: none;
@@ -65,7 +77,9 @@ ul {
   div {
     border-radius: 0 4px 4px 0;
     margin-right: 1em;
+    overflow: hidden;
     padding: 0.5em 1.5em;
+    text-overflow: ellipsis;
     transition: 0.3s;
 
     .menu-hidden & {
