@@ -85,6 +85,7 @@ ul {
     padding: 0.5em 1.5em;
     text-overflow: ellipsis;
     transition: 0.3s;
+    white-space: nowrap;
 
     .menu-hidden & {
       border-radius: 0;
