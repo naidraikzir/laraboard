@@ -6,10 +6,10 @@ class NotFoundController extends Controller
 {
     public function index()
     {
-        // if (auth()->check()) {
+        if (auth()->check()) {
             return view('layouts.dashboard');
-        // }
+        }
 
-        // return abort('404');
+        return abort('404');
     }
 }
