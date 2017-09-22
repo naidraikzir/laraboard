@@ -1,5 +1,7 @@
 export default [
-  { path: '', text: 'Main', title: true },
+  { text: 'Main', title: true },
   { path: '/dashboard', text: 'Dashboard', exact: true },
-  { path: '/dashboard/page-a', text: 'Page A' }
+  { path: '/dashboard/page-a', text: 'Page A' },
+  { text: 'Miscellaneous', title: true },
+  { path: '/dashboard/404', text: 'Not Found' },
 ]

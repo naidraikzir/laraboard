@@ -4,8 +4,8 @@
     li(v-for="(menu, key) of menus" :key="key")
       router-link(:to="{ path: menu.path }" :exact="menu.exact" v-if="!menu.title")
         div(@click="$emit('close-menu')") {{ menu.text }}
-      div(v-else)
-        span.title {{ menu.text }}
+      .title(v-else)
+        span {{ menu.text }}
 </template>
 
 <script>
@@ -50,6 +50,10 @@ ul {
   }
 
   .title {
+    margin-top: 1em;
+  }
+
+  .title span {
     color: rgba(255, 255, 255, 0.5);
     display: inline-block;
     font-size: 0.7em;
