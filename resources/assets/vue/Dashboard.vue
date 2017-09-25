@@ -3,7 +3,7 @@
   sidebar(@close-menu="closeMenu")
   .main(@click="closeMenu")
     topbar(@toggle-menu="toggleMenu")
-    .container.mt-4
+    .container.py-4
       router-view
 </template>
 
