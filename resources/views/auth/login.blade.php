@@ -6,6 +6,18 @@
 <form class="panel-body" method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
 
+    @if (session()->has('registered'))
+        <div class="form-group">
+            <div class="alert alert-success">{{ session('registered') }}</div>
+        </div>
+    @endif
+
+    @if (session()->has('warning'))
+        <div class="form-group">
+            <div class="alert alert-warning">{{ session('warning') }}</div>
+        </div>
+    @endif
+
     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
         <label for="email">Email</label>
         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>

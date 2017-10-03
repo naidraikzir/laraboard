@@ -21,9 +21,12 @@ export default {
 
   methods: {
     logout () {
-      this.http.post('/logout')
-        .then(({ redirect }) => {
-          window.location.href = redirect
+      this.http.post('/logout', {
+          _token: document.getElementsByName('csrf-token')[0]
+            .getAttribute('content')
+        })
+        .then(({ data }) => {
+          window.location.href = data
         })
     }
   }

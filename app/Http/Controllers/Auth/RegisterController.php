@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
+use App\Repositories\ActivationRepository;
+use App\User;
 
 class RegisterController extends Controller
 {
@@ -27,16 +29,17 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ActivationRepository $activationRepository)
     {
         $this->middleware('guest');
+        $this->activationRepository = $activationRepository;
     }
 
     /**
@@ -67,5 +70,45 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function register()
+    {
+        $this->validator(request()->all())->validate();
+        event(new Registered($user = $this->create(request()->all())));
+        return redirect('/login')
+            ->with(
+                'registered',
+                'We sent you an activation code. Check your email.'
+            );
+    }
+
+    /**
+     * Activate user account from email
+     * @return redirect
+     */
+    protected function activateUser($token)
+    {
+        $activation = $this->activationRepository->getActivationByToken($token);
+        if ($activation === null) {
+            abort(404);
+        }
+
+        $user = User::find($activation->user_id);
+        $user->activated_at = date('Y-m-d H:i:s');
+        $user->save();
+        $this->activationRepository->deleteActivation($token);
+
+        // auth()->login($user);
+        return redirect('/login')
+            ->with(
+                'registered',
+                'Account activated. Now you can login.'
+            );
     }
 }
