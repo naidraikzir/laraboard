@@ -1,6 +1,10 @@
-@import '~bootstrap/scss/bootstrap';
+@import
+  '~bootstrap/scss/bootstrap',
+  '~quill/dist/quill.core.css',
+  '~quill/dist/quill.snow.css';
 
-@import 'base';
-@import 'keyframes';
-@import 'overrides';
-@import 'utilities';
+@import
+  'base',
+  'keyframes',
+  'overrides',
+  'utilities';

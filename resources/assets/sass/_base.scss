@@ -2,6 +2,85 @@ body {
   overflow-x: hidden;
 }
 
+input[type=range].form-control {
+  appearance: none;
+  border: none;
+  max-width: 100%;
+  padding: 0;
+  vertical-align: middle;
+
+  &:focus {
+    &::-webkit-slider-runnable-track {
+      border-color: $blue;
+    }
+
+    &::-moz-range-track {
+      border-color: $blue;
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    background: $custom-file-button-bg;
+    border: 1px solid $gray-500;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 8px;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: $blue;
+    border-radius: 8px;
+    cursor: pointer;
+    height: 26px;
+    margin-top: -5px;
+    transition: 0.3s;
+    width: 16px;
+  }
+
+
+  &::-moz-range-track {
+    background: $custom-file-button-bg;
+    border: 1px solid $gray-500;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 8px;
+  }
+
+  &::-moz-range-thumb {
+    background: $blue;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    height: 16px;
+    transition: 0.3s;
+    width: 16px;
+  }
+
+  &::-ms-track {
+    background: $custom-file-button-bg;
+    border: 1px solid $gray-500;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 8px;
+  }
+
+  &::-ms-thumb {
+    background: $blue;
+    border-radius: 8px;
+    cursor: pointer;
+    height: 16px;
+    transition: 0.3s;
+    width: 16px;
+  }
+
+  &::-ms-fill-upper,
+  &::-ms-fill-lower {
+    background: white;
+    border-radius: 4px;
+  }
+}
+
 ::selection {
   background-color: #223;
   color: #fff;
