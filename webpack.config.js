@@ -102,6 +102,7 @@ if (process.env.NODE_ENV === 'production') {
         fallback: 'style-loader',
         use: [
           'css-loader',
+          'postcss-loader',
           'sass-loader'
         ]
       })
@@ -147,6 +148,7 @@ if (process.env.NODE_ENV === 'production') {
       use: [
         { loader: 'style-loader' },
         { loader: 'css-loader' },
+        { loader: 'postcss-loader' },
         { loader: 'sass-loader' }
       ]
     },
