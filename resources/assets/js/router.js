@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 const Index = () => import(/* webpackChunkName: 'dashboard-index' */ 'vue/pages/Index')
 const PageA = () => import(/* webpackChunkName: 'page-a' */ 'vue/pages/PageA')
-const Form = () => import(/* webpackChunkName: 'form' */ 'vue/pages/Form')
+const Components = () => import(/* webpackChunkName: 'components' */ 'vue/pages/Components')
 const NotFound = () => import(/* webpackChunkName: 'page-a' */ 'vue/pages/404')
 
 export default new VueRouter({
@@ -14,7 +14,7 @@ export default new VueRouter({
   routes: [
     { path: '/dashboard', name: 'Laraboard', component: Index },
     { path: '/dashboard/page-a', name: 'Page A', component: PageA },
-    { path: '/dashboard/form', name: 'Form', component: Form },
+    { path: '/dashboard/components', name: 'Components', component: Components },
     { path: '/dashboard/404', name: 'Not Found', component: NotFound },
     { path: '/dashboard/*', redirect: { name: 'Not Found' } }
   ]

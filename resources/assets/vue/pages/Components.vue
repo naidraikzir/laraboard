@@ -34,44 +34,46 @@ div
 
       .form-group
         .input-group
-          .input-group-addon @
+          .input-group-prepend
+            .input-group-text @
           input.form-control(
             type="text"
             v-model="grouped"
             placeholder="Grouped Input")
-          .input-group-addon %
+          .input-group-append
+            .input-group-text %
 
       .form-group
-        label.custom-file
+        .custom-file
           input.custom-file-input(
             type="file"
             @change="setFile")
-          span.custom-file-control
+          label.custom-file-label Choose File
 
       .form-group
-        .form-check(
+        .custom-control.custom-checkbox(
           v-for="(option, i) of options"
           :key="i")
-          label.form-check-label
-            input(
-              type="checkbox"
-              :value="option"
-              v-model="checked")
-            |  {{ option }}
+          input.custom-control-input(
+            type="checkbox"
+            :value="option"
+            :id="`checkbox-${i}`"
+            v-model="checked")
+          label.custom-control-label(:for="`checkbox-${i}`") {{ option }}
 
       .form-group
-        .form-check(
+        .custom-control.custom-radio(
           v-for="(option, i) of options"
           :key="i")
-          label.form-check-label
-            input(
-              type="radio"
-              :value="option"
-              v-model="checkedRadio")
-            |  {{ option }}
+          input.custom-control-input(
+            type="radio"
+            :value="option"
+            :id="`radio-${i}`"
+            v-model="checkedRadio")
+          label.custom-control-label(:for="`radio-${i}`") {{ option }}
 
       .form-group
-        select.form-control(v-model="selected")
+        select.custom-select(v-model="selected")
           option(
             v-for="(option, i) of options"
             :value="option") {{ option }}

@@ -8,6 +8,10 @@
   }
 }
 
+.form-control {
+  border-radius: 4px;
+}
+
 a,
 .btn {
   cursor: pointer;
@@ -54,6 +58,16 @@ a,
   margin-top: 0.5em;
 }
 
-.ql-container {
-  min-height: 10em;
+.ql {
+  &-toolbar {
+    border-radius: 4px 4px 0 0;
+  }
+
+  &-container {
+    border-radius: 0 0 4px 4px;
+  }
+
+  &-editor {
+    min-height: 10em;
+  }
 }
