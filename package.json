@@ -9,7 +9,7 @@
     "stats": "cross-env NODE_ENV=production STATS=yes webpack --progress --hide-modules"
   },
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
     "chart.js": "^2.7.1",
     "vue": "^2.5.13",
@@ -26,7 +26,7 @@
     "cross-env": "^5.1.3",
     "css-loader": "^0.28.9",
     "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^1.1.6",
+    "file-loader": "^1.1.9",
     "json-loader": "^0.5.4",
     "laravel-mix": "^2.0.0",
     "node-sass": "^4.7.2",
@@ -34,7 +34,7 @@
     "postcss-loader": "^2.1.0",
     "pug": "^2.0.0-rc.4",
     "sass-loader": "6.0.6",
-    "style-loader": "^0.20.1",
+    "style-loader": "^0.20.2",
     "url-loader": "^0.6.2",
     "vue-loader": "^14.1.1",
     "vue-template-compiler": "^2.5.13",
