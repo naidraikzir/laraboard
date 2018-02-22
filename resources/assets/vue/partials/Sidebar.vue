@@ -41,10 +41,6 @@ ul {
   margin-top: 5em;
   padding: 0;
 
-  li + li {
-    margin-bottom: 0.5em;
-  }
-
   &:hover div {
     color: rgba(0, 0, 0, 0.5);
   }
@@ -82,7 +78,7 @@ ul {
 
   div {
     border-radius: 4px;
-    margin: 0 1em;
+    margin: 0 1em 0.5em;
     overflow: hidden;
     padding: 0.5em 1em;
     text-overflow: ellipsis;
