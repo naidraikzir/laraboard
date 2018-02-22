@@ -1,5 +1,5 @@
 <template lang="pug">
-.sidebar.bg-dark-blue
+.sidebar
   ul
     li(v-for="(menu, key) of menus" :key="key")
       router-link(:to="{ path: menu.path }" :exact="menu.exact" v-if="!menu.title")
@@ -24,6 +24,7 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar {
+  background: #eef;
   height: 100%;
   left: 0;
   overflow-x: hidden;
@@ -31,13 +32,8 @@ export default {
   position: fixed;
   top: 0;
   transition: 0.3s;
-  width: 200px;
+  width: 220px;
   will-change: width;
-  z-index: 100;
-
-  .menu-hidden & {
-    width: 0;
-  }
 }
 
 ul {
@@ -45,8 +41,12 @@ ul {
   margin-top: 5em;
   padding: 0;
 
+  li + li {
+    margin-bottom: 0.5em;
+  }
+
   &:hover div {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.5);
   }
 
   .title {
@@ -54,7 +54,7 @@ ul {
   }
 
   .title span {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.35);
     display: inline-block;
     font-size: 0.7em;
     font-weight: bold;
@@ -64,33 +64,30 @@ ul {
   }
 
   a {
-    color: white;
+    color: inherit;
     text-decoration: none;
 
     &:hover div,
     &.active div {
-      color: white;
+      color: inherit;
     }
 
     &.active div {
       background-color: #7339ff;
       background-image: linear-gradient(to right, #7339ff, #59ffe0);
+      box-shadow: 0 1em 1em -0.5em rgba(0, 0, 0, 0.05);
+      color: white;
     }
   }
 
   div {
-    border-radius: 0 4px 4px 0;
-    margin-right: 1em;
+    border-radius: 4px;
+    margin: 0 1em;
     overflow: hidden;
-    padding: 0.5em 1.5em;
+    padding: 0.5em 1em;
     text-overflow: ellipsis;
     transition: 0.3s;
     white-space: nowrap;
-
-    .menu-hidden & {
-      border-radius: 0;
-      margin: 0;
-    }
   }
 }
 </style>

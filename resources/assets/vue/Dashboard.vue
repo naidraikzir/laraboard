@@ -47,12 +47,21 @@ export default {
 <style lang="scss" scoped>
 .main {
   background: #eef;
+  box-shadow: -0.5em 0 5em 0 rgba(0, 0, 0, 0.05);
   min-height: 100vh;
+  position: relative;
+  transform: translateX(220px);
   transition: 0.3s;
-  will-change: margin;
+  will-change: margin, transform;
+  z-index: 1;
+
+  .menu-hidden & {
+    transform: translateX(0);
+  }
 
   @media screen and (min-width: 960px) {
-    margin-left: 200px;
+    margin-left: 220px;
+    transform: translateX(0);
 
     .menu-hidden & {
       margin-left: 0;
