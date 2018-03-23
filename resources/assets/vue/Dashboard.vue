@@ -8,40 +8,40 @@
 </template>
 
 <script>
-import Topbar from 'vue/partials/Topbar'
-import Sidebar from 'vue/partials/Sidebar'
+import Topbar from 'vue/partials/Topbar';
+import Sidebar from 'vue/partials/Sidebar';
 
 export default {
   name: 'dashboard',
 
   components: {
     Topbar,
-    Sidebar
+    Sidebar,
   },
 
-  data () {
+  data() {
     return {
-      menu: false
-    }
+      menu: false,
+    };
   },
 
-  created () {
+  created() {
     if (window.innerWidth > 960) {
-      this.menu = true
+      this.menu = true;
     }
   },
 
   methods: {
-    toggleMenu () {
-      this.menu = !this.menu
+    toggleMenu() {
+      this.menu = !this.menu;
     },
-    closeMenu () {
+    closeMenu() {
       if (window.innerWidth < 960) {
-        this.menu = false
+        this.menu = false;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

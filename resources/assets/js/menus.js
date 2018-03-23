@@ -1,8 +1,8 @@
 export default [
   { text: 'Main', title: true },
-  { path: '/dashboard', text: 'Dashboard', exact: true },
-  { path: '/dashboard/page-a', text: 'Page A' },
+  { path: '/', text: 'Dashboard', exact: true },
+  { path: '/page-a', text: 'Page A' },
   { text: 'Miscellaneous', title: true },
-  { path: '/dashboard/components', text: 'Components' },
-  { path: '/dashboard/404', text: 'Not Found' },
-]
+  { path: '/components', text: 'Components' },
+  { path: '/404', text: 'Not Found' },
+];

@@ -17,8 +17,11 @@ Route::get('user/activation/{token}', 'Auth\RegisterController@activateUser')
 
 Route::group([
     'middleware' => 'auth',
-    'prefix' => 'dashboard'
+    'prefix' => 'dashboard',
+    'namespace' => 'Dashboard'
 ], function () {
-    Route::get('/', 'DashboardController@index');
-    Route::get('/{page}', 'NotFoundController@index');
+    Route::get('/', 'IndexController@index');
+
+    // Forwarded to vue-router
+    Route::get('/{page?}', 'IndexController@index')->where('page', '(.*)');
 });

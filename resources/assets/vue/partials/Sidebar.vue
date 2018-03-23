@@ -9,17 +9,17 @@
 </template>
 
 <script>
-import menus from 'js/menus'
+import menus from 'js/menus';
 
 export default {
   name: 'sidebar',
-  
-  data () {
+
+  data() {
     return {
-      menus
-    }
-  }
-}
+      menus,
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>

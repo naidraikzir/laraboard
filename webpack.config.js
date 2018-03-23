@@ -8,53 +8,57 @@ module.exports = {
     dashboard: './resources/assets/js/dashboard.js'
   },
   output: {
-    path: path.resolve(__dirname, './public'),
-    publicPath: '/',
+    path: path.resolve(__dirname, './public/dist'),
+    publicPath: '/dist/',
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].[chunkhash].js'
   },
   module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        use: [{
-          loader: 'vue-loader',
-          options: {
-            loaders: {
-              // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-              // the "scss" and "sass" values for the lang attribute to the right configs here.
-              // other preprocessors should work out of the box, no loader config like this necessary.
-              'scss': 'vue-style-loader!css-loader!sass-loader',
-              'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-            }
-            // other vue-loader options go here
-          }
-        }]
-      },
-      {
-        test: /\.js$/,
-        use: 'babel-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]?[hash]'
-          }
-        }]
-      },
-      {
-        test: /\.(eot|otf|svg|ttf|woff|woff2)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: 'fonts/[name].[ext]'
-          }
-        }]
+    rules: [{
+      test: /\.(js|vue)$/,
+      loader: 'eslint-loader',
+      enforce: 'pre',
+      exclude: /node_modules/,
+      options: {
+        formatter: require('eslint-friendly-formatter'),
+        quiet: true
       }
-    ]
+    }, {
+      test: /\.vue$/,
+      use: [{
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
+            // the "scss" and "sass" values for the lang attribute to the right configs here.
+            // other preprocessors should work out of the box, no loader config like this necessary.
+            'scss': 'vue-style-loader!css-loader!sass-loader',
+            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+          }
+          // other vue-loader options go here
+        }
+      }]
+    }, {
+      test: /\.js$/,
+      use: 'babel-loader',
+      exclude: /node_modules/
+    }, {
+      test: /\.(png|jpg|gif|svg)$/,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]'
+        }
+      }]
+    }, {
+      test: /\.(eot|otf|svg|ttf|woff|woff2)$/,
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[name].[ext]'
+        }
+      }]
+    }]
   },
   resolve: {
     extensions: [ '.js', '.vue', '.scss' ],
@@ -92,7 +96,6 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.output.publicPath = '/'
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.module.rules = (module.exports.module.rules || []).concat([

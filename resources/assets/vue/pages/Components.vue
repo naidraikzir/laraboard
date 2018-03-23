@@ -92,14 +92,14 @@ div
 </template>
 
 <script>
-import { quillEditor } from 'vue-quill-editor'
+import { quillEditor } from 'vue-quill-editor';
 
 export default {
   components: {
-    quillEditor
+    quillEditor,
   },
 
-  data () {
+  data() {
     return {
       text: null,
       email: null,
@@ -112,7 +112,7 @@ export default {
         'one',
         'two',
         'three',
-        'four'
+        'four',
       ],
       checked: [],
       checkedRadio: null,
@@ -120,18 +120,18 @@ export default {
       selected: null,
       range: {
         min: 0,
-        max: 250000
+        max: 250000,
       },
       selectedRange: null,
       quill: null,
-      quillOptions: {}
-    }
+      quillOptions: {},
+    };
   },
 
   methods: {
-    setFile (e) {
-      this.files = e.target.files
-    }
-  }
-}
+    setFile(e) {
+      this.files = e.target.files;
+    },
+  },
+};
 </script>

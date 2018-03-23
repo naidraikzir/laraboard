@@ -8,27 +8,27 @@ nav.navbar.bg-white.py-3
 </template>
 
 <script>
-import LogoutIcon from 'vue-feather-icon/components/log-out'
-import MenuIcon from 'vue-feather-icon/components/menu'
+import LogoutIcon from 'vue-feather-icon/components/log-out';
+import MenuIcon from 'vue-feather-icon/components/menu';
 
 export default {
   name: 'topbar',
 
   components: {
     LogoutIcon,
-    MenuIcon
+    MenuIcon,
   },
 
   methods: {
-    logout () {
+    logout() {
       this.http.post('/logout', {
-          _token: document.getElementsByName('csrf-token')[0]
-            .getAttribute('content')
-        })
+        _token: document.getElementsByName('csrf-token')[0]
+          .getAttribute('content'),
+      })
         .then(({ data }) => {
-          window.location.href = data
-        })
-    }
-  }
-}
+          window.location.href = data;
+        });
+    },
+  },
+};
 </script>

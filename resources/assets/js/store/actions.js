@@ -1,7 +1,7 @@
-function make (type) {
-  return ({ commit }, ...args) => commit(type, ...args)
+function make(type) {
+  return ({ commit }, ...args) => commit(type, ...args);
 }
 
 export default {
-  toggleExample: make('TOGGLE_EXAMPLE')
-}
+  toggleExample: make('TOGGLE_EXAMPLE'),
+};

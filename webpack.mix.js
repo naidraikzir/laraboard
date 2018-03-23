@@ -13,7 +13,7 @@ let mix = require('laravel-mix');
 
 mix.disableNotifications();
 mix.version([
-    'public/css/app.css',
-    'public/js/vendor.js',
-    'public/js/dashboard.js',
+    'public/dist/css/app.css',
+    'public/dist/js/vendor.js',
+    'public/dist/js/dashboard.js',
 ]);
