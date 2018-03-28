@@ -1,7 +1,7 @@
 .card {
   border: 0;
-  box-shadow: 0 0.5em 0.5em 0 rgba(0, 0, 0, 0.05);
-  
+  box-shadow: 0 0.5em 1.5em -0.25em rgba(0, 0, 0, 0.1);
+
   &-footer {
     background: #eaeaff;
     border: 0;
@@ -10,27 +10,6 @@
 
 .form-control {
   border-radius: 4px;
-}
-
-a,
-.btn {
-  cursor: pointer;
-}
-
-.btn {
-  font-size: 0.8rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  padding: 0.657125rem 1rem;
-  text-transform: uppercase;
-}
-
-.btn:not(.btn-link) {
-  box-shadow: 0 0.1em 0.25em 0 rgba(0, 0, 0, 0.25);
-
-  &:hover {
-    box-shadow: 0 0.05em 0.15em 0 rgba(0, 0, 0, 0.35);
-  }
 }
 
 .table thead th {

@@ -1,0 +1,15 @@
+.alert {
+  &-container {
+    bottom: 0;
+    max-width: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-left: 1em;
+    padding-right: 1em;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 100;
+  }
+}

@@ -3,5 +3,5 @@ function make(type) {
 }
 
 export default {
-  toggleExample: make('TOGGLE_EXAMPLE'),
+  addAlert: make('ADD_ALERT'),
 };

@@ -1,5 +1,11 @@
 <template lang="pug">
 #dashboard(:class="{ 'menu-hidden': !menu }")
+  transition-group.alert-container(name="list-slide")
+    alert(
+      v-for="(alert, i) of alerts"
+      :key="i"
+      :type="alert.type"
+      :message="alert.message")
   sidebar(@close-menu="closeMenu")
   .main(@click="closeMenu")
     topbar(@toggle-menu="toggleMenu")
@@ -8,8 +14,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Topbar from 'vue/partials/Topbar';
 import Sidebar from 'vue/partials/Sidebar';
+import Alert from 'vue/components/Alert';
 
 export default {
   name: 'dashboard',
@@ -17,12 +25,19 @@ export default {
   components: {
     Topbar,
     Sidebar,
+    Alert,
   },
 
   data() {
     return {
       menu: false,
     };
+  },
+
+  computed: {
+    ...mapGetters([
+      'alerts',
+    ]),
   },
 
   created() {

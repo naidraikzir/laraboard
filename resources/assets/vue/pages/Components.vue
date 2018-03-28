@@ -86,12 +86,17 @@ div
           v-model.number="selectedRange")
 
       .form-group
+        button.btn.btn-danger(@click="testAlert('danger')") Danger Alert
+        button.btn.btn-success.ml-1(@click="testAlert('success')") Success Alert
+
+      .form-group
         quill-editor(
           v-model="quill"
           :options="quillOptions")
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import { quillEditor } from 'vue-quill-editor';
 
 export default {
@@ -132,6 +137,15 @@ export default {
     setFile(e) {
       this.files = e.target.files;
     },
+    testAlert(type) {
+      this.addAlert({
+        type,
+        message: 'Ohoy, sup dude?!',
+      });
+    },
+    ...mapActions([
+      'addAlert',
+    ]),
   },
 };
 </script>

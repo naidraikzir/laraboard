@@ -1,3 +1,3 @@
 export default {
-  example: state => state.example,
+  alerts: state => state.alerts,
 };

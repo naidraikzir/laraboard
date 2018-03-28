@@ -1,0 +1,15 @@
+.list-slide-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.list-slide-enter-active,
+.list-slide-leave-active {
+  transition: all 0.3s;
+}
+
+.list-slide-enter,
+.list-slide-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
