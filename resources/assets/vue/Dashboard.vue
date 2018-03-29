@@ -1,5 +1,6 @@
 <template lang="pug">
 #dashboard(:class="{ 'menu-hidden': !menu }")
+  portal-target(name="modals")
   transition-group.alert-container(name="list-slide")
     alert(
       v-for="(alert, i) of alerts"

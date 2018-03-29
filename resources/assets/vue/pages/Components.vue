@@ -87,7 +87,28 @@ div
 
       .form-group
         button.btn.btn-danger(@click="testAlert('danger')") Danger Alert
-        button.btn.btn-success.ml-1(@click="testAlert('success')") Success Alert
+        button.btn.btn-success.ml-2(@click="testAlert('success')") Success Alert
+
+      .form-group
+        button.btn.btn-primary(@click="showModal('sm', false)") Small Modal
+        button.btn.btn-primary.ml-2(@click="showModal('normal', false)") Normal Modal
+        button.btn.btn-primary.ml-2(@click="showModal('lg', true)") Large Critical Modal
+        portal(to="modals")
+          modal(
+            :show="modal.show"
+            :size="modal.size"
+            :critical="modal.critical"
+            @close="hideModal")
+            template(slot="header")
+              h5.modal-title Modal Header
+            template(slot="body")
+              h5 Modal Content
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, vitae. Numquam nobis,
+                |  perspiciatis, deserunt velit adipisci quidem eligendi possimus eveniet nulla incidunt
+                |  minus veniam corrupti earum odit rerum ipsam, ex!
+            template(slot="footer")
+              button.btn.btn-link(@click="hideModal") Close
 
       .form-group
         quill-editor(
@@ -98,10 +119,12 @@ div
 <script>
 import { mapActions } from 'vuex';
 import { quillEditor } from 'vue-quill-editor';
+import Modal from 'vue/components/Modal';
 
 export default {
   components: {
     quillEditor,
+    Modal,
   },
 
   data() {
@@ -128,6 +151,11 @@ export default {
         max: 250000,
       },
       selectedRange: null,
+      modal: {
+        show: false,
+        size: '',
+        critical: false,
+      },
       quill: null,
       quillOptions: {},
     };
@@ -142,6 +170,14 @@ export default {
         type,
         message: 'Ohoy, sup dude?!',
       });
+    },
+    showModal(size, critical) {
+      this.modal.size = size;
+      this.modal.show = true;
+      this.modal.critical = critical;
+    },
+    hideModal() {
+      this.modal.show = false;
     },
     ...mapActions([
       'addAlert',

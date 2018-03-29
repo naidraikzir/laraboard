@@ -4,18 +4,20 @@ nav.navbar.bg-white.py-3
     menu-icon
   h5.m-0 {{ $route.name }}
   a.d-inline-flex(@click="logout")
-    logout-icon
+    log-out-icon
 </template>
 
 <script>
-import LogoutIcon from 'vue-feather-icon/components/log-out';
-import MenuIcon from 'vue-feather-icon/components/menu';
+import {
+  LogOutIcon,
+  MenuIcon,
+} from 'vue-feather-icons';
 
 export default {
   name: 'topbar',
 
   components: {
-    LogoutIcon,
+    LogOutIcon,
     MenuIcon,
   },
 
