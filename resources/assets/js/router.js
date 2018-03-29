@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 
 const Index = () => import(/* webpackChunkName: 'dashboard-index' */ 'vue/pages/Index');
 const Components = () => import(/* webpackChunkName: 'components' */ 'vue/pages/Components');
-const NotFound = () => import(/* webpackChunkName: 'page-a' */ 'vue/pages/404');
+const NotFound = () => import(/* webpackChunkName: 'not-found' */ 'vue/pages/404');
 
 export default new VueRouter({
   linkActiveClass: 'active',
