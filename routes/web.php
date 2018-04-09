@@ -21,6 +21,14 @@ Route::group([
     'namespace' => 'Dashboard'
 ], function () {
     Route::get('/', 'IndexController@index');
+    Route::get('images/{name}', 'ImageController@getImage');
+
+    Route::group([
+        'prefix' => 'data',
+        'middleware' => 'should_ajax'
+    ], function () {
+        Route::post('images', 'ImageController@saveImage');
+    });
 
     // Forwarded to vue-router
     Route::get('/{page?}', 'IndexController@index')->where('page', '(.*)');

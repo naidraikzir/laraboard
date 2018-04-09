@@ -102,13 +102,19 @@ div
             template(slot="header")
               h5.modal-title Modal Header
             template(slot="body")
-              h5 Modal Content
+              p Modal Content
               p
                 | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, vitae. Numquam nobis,
                 |  perspiciatis, deserunt velit adipisci quidem eligendi possimus eveniet nulla incidunt
                 |  minus veniam corrupti earum odit rerum ipsam, ex!
             template(slot="footer")
               button.btn.btn-link(@click="hideModal") Close
+
+      .form-group
+        date-picker(
+          lang="en"
+          format="YYYY-MM-dd"
+          v-model="datepicker")
 
       .form-group
         quill-editor(
@@ -118,13 +124,15 @@ div
 
 <script>
 import { mapActions } from 'vuex';
-import { quillEditor } from 'vue-quill-editor';
+import DatePicker from 'vue2-datepicker';
+import QuillEditor from 'vue/components/QuillEditor';
 import Modal from 'vue/components/Modal';
 
 export default {
   components: {
-    quillEditor,
+    DatePicker,
     Modal,
+    QuillEditor,
   },
 
   data() {
@@ -156,6 +164,7 @@ export default {
         size: '',
         critical: false,
       },
+      datepicker: '',
       quill: null,
       quillOptions: {},
     };

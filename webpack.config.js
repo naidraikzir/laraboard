@@ -68,6 +68,7 @@ module.exports = {
     },
   },
   devServer: {
+    port: 9001,
     historyApiFallback: true,
     overlay: true,
     inline: true,
@@ -87,11 +88,10 @@ module.exports = {
         return module.context &&
           module.context.indexOf('node_modules') !== -1 &&
           module.request && module.request.indexOf('.scss') == -1 &&
-          module.request.indexOf('.css') == -1 
+          module.request.indexOf('.css') == -1
       }
     }),
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
-    new webpack.optimize.ModuleConcatenationPlugin()
   ]
 }
 
@@ -135,7 +135,8 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),
-    new ExtractTextPlugin('css/app.css')
+    new ExtractTextPlugin('css/app.css'),
+    new webpack.optimize.ModuleConcatenationPlugin()
   ])
 
   if (process.env.STATS === 'yes') {
@@ -144,7 +145,7 @@ if (process.env.NODE_ENV === 'production') {
     ])
   }
 } else {
-  module.exports.output.publicPath = 'http://localhost:8080/'
+  module.exports.output.publicPath = 'http://localhost:9001/'
   module.exports.module.rules = (module.exports.module.rules || []).concat([
     {
       test: /\.scss$/,

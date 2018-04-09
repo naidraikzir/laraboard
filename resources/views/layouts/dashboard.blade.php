@@ -13,8 +13,8 @@
 <body>
     <div id="dashboard"></div>
     @if (env('APP_ENV') === 'local')
-        <script src="http://localhost:8080/js/vendor.js"></script>
-        <script src="http://localhost:8080/js/dashboard.js"></script>
+        <script src="http://localhost:9001/js/vendor.js"></script>
+        <script src="http://localhost:9001/js/dashboard.js"></script>
     @else
         <script src="{{ mix('dist/js/vendor.js') }}"></script>
         <script src="{{ mix('dist/js/dashboard.js') }}"></script>
