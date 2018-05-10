@@ -8,10 +8,10 @@ nav.navbar.bg-white.py-3
 </template>
 
 <script>
-import {
-  LogOutIcon,
-  MenuIcon,
-} from 'vue-feather-icons';
+import { LogOutIcon, MenuIcon } from 'vue-feather-icons';
+import getCsrf from 'js/utils/get-csrf';
+
+const csrf = getCsrf();
 
 export default {
   name: 'topbar',
@@ -22,14 +22,26 @@ export default {
   },
 
   methods: {
-    logout() {
-      this.http.post('/logout', {
-        _token: document.getElementsByName('csrf-token')[0]
-          .getAttribute('content'),
-      })
-        .then(({ data }) => {
-          window.location.href = data;
-        });
+    async logout() {
+      try {
+        const { data } = await this.http.post(
+          '/logout',
+          Object.assign(
+            {},
+            csrf
+              ? {
+                  _token: csrf,
+                }
+              : {},
+          ),
+          {
+            baseURL: '/',
+          },
+        );
+        window.location.href = data;
+      } catch (err) {
+        console.error(err);
+      }
     },
   },
 };
