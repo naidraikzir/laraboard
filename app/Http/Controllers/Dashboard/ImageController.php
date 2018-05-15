@@ -39,5 +39,4 @@ class ImageController extends Controller
         $path = $request->image->store('images');
         return "/dashboard/{$path}";
     }
-
 }

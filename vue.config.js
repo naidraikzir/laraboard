@@ -7,6 +7,9 @@ module.exports = {
   },
   devServer: {
     port: 9001,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
   chainWebpack: config => {
     config
@@ -16,8 +19,7 @@ module.exports = {
 
     config.entryPoints.delete('app');
 
-    config.output
-      .publicPath('http://localhost:9001/');
+    config.output.publicPath('http://localhost:9001/');
 
     if (process.env.NODE_ENV === 'production') {
       config.output
@@ -32,9 +34,7 @@ module.exports = {
       .add('.scss')
       .end();
 
-    config.resolve.modules
-      .add(__dirname + '/resources/assets/')
-      .end();
+    config.resolve.modules.add(__dirname + '/resources/assets/').end();
 
     config.plugins.delete('html');
   },
