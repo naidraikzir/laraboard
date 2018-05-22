@@ -88,27 +88,13 @@ div
       .form-group
         button.btn.btn-danger(@click="testAlert('danger')") Danger Alert
         button.btn.btn-success.ml-2(@click="testAlert('success')") Success Alert
+        button.btn.btn-warning.ml-2(@click="testAlert('warning')") Warning Alert
+        button.btn.btn-info.ml-2(@click="testAlert('info')") Info Alert
 
       .form-group
         button.btn.btn-primary(@click="showModal('sm', false)") Small Modal
         button.btn.btn-primary.ml-2(@click="showModal('normal', false)") Normal Modal
         button.btn.btn-primary.ml-2(@click="showModal('lg', true)") Large Critical Modal
-        portal(to="modals")
-          modal(
-            :show="modal.show"
-            :size="modal.size"
-            :critical="modal.critical"
-            @close="hideModal")
-            template(slot="header")
-              h5.modal-title Modal Header
-            template(slot="body")
-              p Modal Content
-              p
-                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, vitae. Numquam nobis,
-                |  perspiciatis, deserunt velit adipisci quidem eligendi possimus eveniet nulla incidunt
-                |  minus veniam corrupti earum odit rerum ipsam, ex!
-            template(slot="footer")
-              button.btn.btn-link(@click="hideModal") Close
 
       .form-group
         date-picker(
@@ -120,17 +106,78 @@ div
         quill-editor(
           v-model="quill"
           :options="quillOptions")
+
+  data-grid.mt-4(
+    :columns="columns"
+    :rows="users"
+    :loading="loading"
+    :per-page="params.per_page"
+    :current-page="params.page"
+    :sort-by="params.sort_by"
+    :sort-dir="params.sort_dir"
+    :last-page="pagination.last_page"
+    :total="pagination.total"
+    @to-page="onToPage"
+    @per-page="onPerPage"
+    @sort-by="onSortBy"
+    @sort-dir="onSortDir"
+    @search="onSearch")
+    .actions(
+      slot="actions"
+      slot-scope="props")
+      a(@click="showUser(props.row)")
+        eye-icon
+
+  portal(to="modals")
+    //- Modal Demo
+    modal(
+      :show="modal.show"
+      :size="modal.size"
+      :critical="modal.critical"
+      @close="hideModal")
+      template(slot="header")
+        h5.modal-title Modal Header
+      template(slot="body")
+        p Modal Content
+        p
+          | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, vitae. Numquam nobis,
+          |  perspiciatis, deserunt velit adipisci quidem eligendi possimus eveniet nulla incidunt
+          |  minus veniam corrupti earum odit rerum ipsam, ex!
+      template(slot="footer")
+        button.btn.btn-link(@click="hideModal") Close
+
+    //- User Modal Demo
+    modal(
+      :show="user.show"
+      @close="hideUser")
+      h5.modal-title(slot="header") User
+      div(slot="body")
+        .row(v-if="user.user")
+          .col Name
+          .col {{ user.user.name }}
+        .row(v-if="user.user")
+          .col Email
+          .col {{ user.user.email }}
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+import grid from 'js/mixins/grid';
 import DatePicker from 'vue2-datepicker';
+import { EyeIcon } from 'vue-feather-icons';
 import QuillEditor from 'vue/components/QuillEditor';
+import DataGrid from 'vue/components/DataGrid';
 import Modal from 'vue/components/Modal';
 
 export default {
+  mixins: [
+    grid,
+  ],
+
   components: {
+    DataGrid,
     DatePicker,
+    EyeIcon,
     Modal,
     QuillEditor,
   },
@@ -167,10 +214,45 @@ export default {
       datepicker: '',
       quill: null,
       quillOptions: {},
+      columns: [
+        { name: 'name', text: 'Name', sortable: true },
+        { name: 'email', text: 'email', sortable: true },
+        { name: 'actions', text: '' },
+      ],
+      users: [],
+      user: {
+        user: null,
+        show: false,
+      },
     };
   },
 
+  watch: {
+    params: {
+      deep: true,
+      handler() {
+        this.fetchUsers();
+      },
+    },
+  },
+
+  mounted() {
+    this.fetchUsers();
+  },
+
   methods: {
+    async fetchUsers() {
+      try {
+        const { data } = await this.http.get('/data/users', {
+          params: this.params,
+        });
+        this.users = data.data;
+        delete data.data;
+        this.pagination = data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
     setFile(e) {
       this.files = e.target.files;
     },
@@ -187,6 +269,16 @@ export default {
     },
     hideModal() {
       this.modal.show = false;
+    },
+    showUser(user) {
+      this.user.user = user;
+      this.user.show = true;
+    },
+    hideUser() {
+      this.user.show = false;
+      setTimeout(() => {
+        this.user.user = null;
+      }, 200);
     },
     ...mapActions([
       'addAlert',

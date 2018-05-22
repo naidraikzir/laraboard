@@ -27,6 +27,7 @@ Route::group([
         'prefix' => 'data',
         'middleware' => 'should_ajax'
     ], function () {
+        Route::get('users', 'UserController@index');
         Route::post('images', 'ImageController@saveImage');
     });
 

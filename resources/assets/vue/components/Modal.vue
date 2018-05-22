@@ -7,11 +7,11 @@
       :class="sizeClass"
       @click.stop="")
       .modal-content
-        .modal-header
+        .modal-header(v-if="hasHeader")
           slot(name="header")
-        .modal-body
+        .modal-body(v-if="hasBody")
           slot(name="body")
-        .modal-footer
+        .modal-footer(v-if="hasFooter")
           slot(name="footer")
 </template>
 
@@ -35,6 +35,15 @@ export default {
   computed: {
     sizeClass() {
       return `modal-${this.size}`;
+    },
+    hasHeader() {
+      return !!this.$slots.header;
+    },
+    hasBody() {
+      return !!this.$slots.body;
+    },
+    hasFooter() {
+      return !!this.$slots.footer;
     },
   },
 
