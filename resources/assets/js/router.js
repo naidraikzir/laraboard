@@ -12,7 +12,7 @@ export default new VueRouter({
   mode: 'history',
   base: '/dashboard/',
   routes: [
-    { path: '', name: 'Laraboard', component: Index },
+    { path: '', name: 'Dashboard', component: Index },
     { path: '/components', name: 'Components', component: Components },
     { path: '/404', name: 'Not Found', component: NotFound },
     { path: '/*', redirect: { name: 'Not Found' } },

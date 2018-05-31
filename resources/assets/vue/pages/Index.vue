@@ -1,4 +1,4 @@
 <template lang="pug">
 div
-  h2 Laraboard
+  h2 Dashboard
 </template>
