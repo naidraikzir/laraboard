@@ -81,10 +81,7 @@ export default {
     },
     insertImageUrl(url) {
       const range = this.editor.quill.getSelection();
-      const finalUrl = process.env.LAN ?
-        `/Laporan-Informasi/public${url}` :
-        url;
-      this.editor.quill.insertEmbed(range.index, 'image', finalUrl);
+      this.editor.quill.insertEmbed(range.index, 'image', url);
     },
   },
 };
